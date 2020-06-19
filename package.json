@@ -1,30 +1,31 @@
 {
-  "name": "pname",
-  "version": "1.0.0",
-  "description": "Cloudflare worker TypeScript template",
+  "name": "runes-api",
+  "version": "0.1.0",
+  "description": "API for various work with runes",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
     "dev": "NODE_ENV=development npm run build",
-    "format": "prettier --write '**/*.{ts,js,css,json,md}'",
-    "test:clean": "rimraf ./transpiled/src ./transpiled/test",
-    "test": "npm run test:clean && npm run transpile && mocha --require source-map-support/register --recursive transpiled/test",
-    "transpile": "tsc --project ./test"
+    "prettier:fix": "prettier --write '**/*.{ts,js,json,md}'",
+    "test": "jest"
   },
   "author": "author",
   "license": "MIT OR Apache-2.0",
   "devDependencies": {
     "@cloudflare/workers-types": "^1.0.9",
-    "@types/chai": "^4.2.11",
-    "@types/mocha": "^5.2.7",
-    "chai": "^4.2.0",
-    "mocha": "^6.2.3",
+    "@types/jest": "^26.0.0",
+    "@types/node-fetch": "^2.5.7",
+    "jest": "^26.0.1",
+    "jest-cli": "^26.0.1",
+    "jest-junit": "^10.0.0",
     "prettier": "^1.19.1",
-    "rimraf": "^3.0.2",
-    "service-worker-mock": "^2.0.5",
+    "ts-jest": "^26.1.0",
     "ts-loader": "^6.2.2",
     "typescript": "^3.9.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
   }
 }
