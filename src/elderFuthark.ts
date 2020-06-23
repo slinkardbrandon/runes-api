@@ -54,7 +54,7 @@ export const elderFuthark: IRune[] = [
    * Start the second aett, the aett of Heimdall
    */
   {
-    name: 'hagalaz',
+    name: 'haglaz',
     imageUrl:
       'https://upload.wikimedia.org/wikipedia/commons/2/25/Runic_letter_haglaz.png',
     aett: Aett.Heimdall,

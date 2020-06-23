@@ -6,6 +6,8 @@
   "scripts": {
     "build": "webpack",
     "dev": "NODE_ENV=development npm run build",
+    "start": "wrangler preview",
+    "up": "npm run start",
     "prettier:fix": "prettier --write '**/*.{ts,js,json,md}'",
     "test": "jest"
   },
@@ -26,6 +28,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "query-string": "^6.13.1"
   }
 }
