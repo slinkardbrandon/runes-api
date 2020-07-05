@@ -21,7 +21,7 @@ export class ElderFuthark extends System {
         new Rune({
           name: 'uruz',
           imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/8/8e/Runic_letter_uruz.pngg',
+            'https://upload.wikimedia.org/wikipedia/commons/8/8e/Runic_letter_uruz.png',
           aett: Aett.Freya,
           meaning: '',
           transliteration: 'U',
@@ -44,7 +44,7 @@ export class ElderFuthark extends System {
           transliteration: 'A',
         }),
         new Rune({
-          name: 'raido',
+          name: 'raidho',
           imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/c/cf/Runic_letter_raido.png',
           aett: Aett.Freya,

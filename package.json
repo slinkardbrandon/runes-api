@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "NODE_ENV=development npm run build && cloudworker ./dist/worker.js",
+    "start:webpack": "npm run build",
+    "start:cloudworker": "cloudworker ./dist/worker.production.js",
+    "dev": "rm -rf ./dist && npm run start:webpack && npm run start:cloudworker",
     "start": "wrangler preview",
     "up": "npm run start",
     "prettier:fix": "prettier --write '**/*.{ts,js,json,md}'",
