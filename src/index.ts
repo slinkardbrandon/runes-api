@@ -1,7 +1,9 @@
 import { Router } from './router';
-import { elderFuthark } from './elderFuthark';
+import { ElderFuthark } from './classes/ElderFuthark';
 import { parseUrl } from 'query-string';
 import { IRune } from './interfaces/IRune';
+
+const elderFuthark = new ElderFuthark();
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request));
@@ -26,7 +28,7 @@ const elderFutharkHandler = (request: Request) => {
   let retVal: IRune[] = JSON.parse(JSON.stringify(elderFuthark));
 
   if (query.aett) {
-    retVal = elderFuthark.filter(rune => rune.aett === query.aett);
+    retVal = elderFuthark.runes.filter(rune => rune.aett === query.aett);
   }
   if (query.name) {
     retVal = retVal.filter(rune => rune.name === query.name);
