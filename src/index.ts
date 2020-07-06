@@ -1,7 +1,8 @@
 import { Router } from './router';
 import { ElderFuthark } from './classes/ElderFuthark';
-import { parseUrl } from 'query-string';
 import { IRune } from './interfaces/IRune';
+import { parse } from 'url';
+import { Rune } from './classes/Rune';
 
 const elderFuthark = new ElderFuthark();
 
@@ -18,13 +19,39 @@ const jsonHandler = (json: any) => {
 
 async function handleRequest(request: Request) {
   const r = new Router();
-  r.get(/\/elderfuthark/, elderFutharkHandler);
+  const systemHandlerMap: {
+    [key: string]: (request: Request) => Response | Rune[];
+  } = {
+    elderfuthark: elderFutharkHandler,
+    // TODO: Add handler support for multiple runic systems
+    // youngerfuthark: youngerFutharkHandler,
+  };
+
+  Object.keys(systemHandlerMap).forEach(key => {
+    r.get(new RegExp(`\/${key}(.+)?`), systemHandlerMap[key]);
+  });
   return r.route(request);
 }
 
 // decorators pls
 const elderFutharkHandler = (request: Request) => {
-  const { query } = parseUrl(request.url);
+  const { href: url, pathname, query } = parse(request.url, true);
+
+  switch (pathname) {
+    case '/elderfuthark/find':
+      return jsonHandler(elderFutharkFind(query));
+    case '/elderfuthark/cast':
+      return jsonHandler(elderFutharkCast(query));
+    default:
+      throw new Error('Endpoint not supported!');
+  }
+};
+
+const elderFutharkCast = (query: { [key: string]: any }) => {
+  return elderFuthark.pull(query.count);
+};
+
+const elderFutharkFind = (query: { [key: string]: any }) => {
   let retVal: IRune[] = JSON.parse(JSON.stringify(elderFuthark));
 
   if (query.aett) {
@@ -34,5 +61,5 @@ const elderFutharkHandler = (request: Request) => {
     retVal = retVal.filter(rune => rune.name === query.name);
   }
 
-  return jsonHandler(retVal);
+  return retVal;
 };

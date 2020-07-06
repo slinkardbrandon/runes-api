@@ -1,7 +1,4 @@
 import { System } from './System';
-import { IRune } from '../interfaces/IRune';
-import { Rune } from './Rune';
-import { Aett } from '../enums/Aett';
 import { berkano } from './runes/ElderFuthark/berkano';
 import { ansuz } from './runes/ElderFuthark/ansuz';
 import { thurisaz } from './runes/ElderFuthark/thurisaz';
@@ -26,6 +23,7 @@ import { laguz } from './runes/ElderFuthark/laguz';
 import { ingwaz } from './runes/ElderFuthark/ingwaz';
 import { dagaz } from './runes/ElderFuthark/dagaz';
 import { othala } from './runes/ElderFuthark/othala';
+import { Rune } from './Rune';
 
 export class ElderFuthark extends System {
   constructor() {
@@ -71,8 +69,13 @@ export class ElderFuthark extends System {
     });
   }
 
-  public pull = (): IRune[] => {
-    // TODO: Implement it
-    return [{}] as IRune[];
+  /**
+   * Create more sophisticated pulls in the future
+   */
+  public pull = (count: number = 3): Rune[] => {
+    const runes = this.getRandomRunes(this.runes, count);
+    runes.forEach(r => r.toss());
+
+    return runes;
   };
 }
