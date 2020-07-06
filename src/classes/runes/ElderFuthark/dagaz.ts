@@ -1,5 +1,5 @@
-import { Aett } from '../../enums/Aett';
-import { Rune } from '../../classes/Rune';
+import { Aett } from '../../../enums/Aett';
+import { Rune } from '../../Rune';
 
 export const dagaz = new Rune({
   name: 'dagaz',
